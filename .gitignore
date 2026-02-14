@@ -1,5 +1,5 @@
 venv/
-.html
-.xml
+*.html
+*.xml
 .DS_Store
 results/
