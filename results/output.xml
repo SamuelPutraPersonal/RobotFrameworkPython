@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.1 (Python 3.12.8 on darwin)" generated="2026-02-14T09:10:21.593139" rpa="false" schemaversion="5">
+<suite id="s1" name="robotFramework" source="/Users/samueldianpermanaputra/Projects/PythonBelajar/robotFramework">
+<suite id="s1-s1" name="Basic" source="/Users/samueldianpermanaputra/Projects/PythonBelajar/robotFramework/Basic">
+<suite id="s1-s1-s1" name="TC3" source="/Users/samueldianpermanaputra/Projects/PythonBelajar/robotFramework/Basic/TC3.robot">
+<test id="s1-s1-s1-t1" name="Handling Dropdowns and Lists" line="11">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-02-14T09:10:21.809406" level="INFO">Opening browser 'chrome' to base url 'http://testautomationpractice.blogspot.com/'.</msg>
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-02-14T09:10:21.809012" elapsed="2.956958"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-02-14T09:10:24.767698" elapsed="0.344097"/>
+</kw>
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>1 seconds</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2026-02-14T09:10:25.112261" elapsed="0.000779"/>
+</kw>
+<kw name="Scroll Element Into View" owner="SeleniumLibrary">
+<arg>id: animals</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" start="2026-02-14T09:10:25.113360" elapsed="2.303513"/>
+</kw>
+<kw name="Get List Items" owner="SeleniumLibrary">
+<msg time="2026-02-14T09:10:42.581965" level="INFO">${options} = ['United States', 'Canada', 'United Kingdom', 'Germany', 'France', 'Australia', 'Japan', 'China', 'Brazil', 'India']</msg>
+<var>${options}</var>
+<arg>id:country</arg>
+<doc>Returns all labels or values of selection list ``locator``.</doc>
+<status status="PASS" start="2026-02-14T09:10:27.417265" elapsed="15.165329"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Available options: ${options}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-14T09:10:42.583130" elapsed="0.001239"/>
+</kw>
+<kw name="Select From List By Label" owner="SeleniumLibrary">
+<msg time="2026-02-14T09:10:42.585207" level="INFO">Selecting options from selection list 'country' by label Germany.</msg>
+<arg>country</arg>
+<arg>Germany</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<status status="PASS" start="2026-02-14T09:10:42.584703" elapsed="10.114875"/>
+</kw>
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2026-02-14T09:10:52.700273" level="INFO">Selecting options from selection list 'country' by value india.</msg>
+<arg>country</arg>
+<arg>india</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2026-02-14T09:10:52.699908" elapsed="7.080968"/>
+</kw>
+<kw name="Select From List By Index" owner="SeleniumLibrary">
+<msg time="2026-02-14T09:10:59.782563" level="INFO">Selecting options from selection list 'country' by index 3.</msg>
+<arg>country</arg>
+<arg>3</arg>
+<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
+<status status="PASS" start="2026-02-14T09:10:59.781729" elapsed="11.114562"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-02-14T09:11:10.897419" elapsed="1.126457"/>
+</kw>
+<status status="PASS" start="2026-02-14T09:10:21.805858" elapsed="50.218213"/>
+</test>
+<status status="PASS" start="2026-02-14T09:10:21.652378" elapsed="50.378707"/>
+</suite>
+<status status="PASS" start="2026-02-14T09:10:21.644756" elapsed="50.389285"/>
+</suite>
+<status status="PASS" start="2026-02-14T09:10:21.616029" elapsed="50.422357"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="robotFramework" id="s1" pass="1" fail="0" skip="0">robotFramework</stat>
+<stat name="Basic" id="s1-s1" pass="1" fail="0" skip="0">robotFramework.Basic</stat>
+<stat name="TC3" id="s1-s1-s1" pass="1" fail="0" skip="0">robotFramework.Basic.TC3</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
