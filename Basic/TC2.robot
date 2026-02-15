@@ -6,7 +6,7 @@ Resource    /Users/samueldianpermanaputra/Projects/PythonBelajar/robotFramework/
 *** Variables ***
 ${browser}          chrome
 ${url}              http://testautomationpractice.blogspot.com/
-${Execution_Env}    False
+${Execution_Env}    True
 
 
 *** Test Cases ***

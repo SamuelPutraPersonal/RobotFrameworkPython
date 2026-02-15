@@ -1,0 +1,25 @@
+name: Robot Framework Regression
+on: [push]  # This triggers the pipeline on every code push
+
+jobs:
+  run-robot-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run: docker build -t my-robot-app .
+
+      - name: Run Tests in Docker
+        run: |
+          mkdir -p results
+          # We force 'True' here because GitHub's servers are headless
+          docker run --rm -v ${{ github.workspace }}/results:/app/results my-robot-app robot -d results Basic/TC1.robot
+
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v4
+        if: always()  # Ensures you get reports even if the test fails
+        with:
+          name: robot-test-reports
+          path: results/

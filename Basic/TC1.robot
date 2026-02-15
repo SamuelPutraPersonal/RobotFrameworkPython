@@ -9,7 +9,7 @@ Resource            ../Basic/CommonKeywords.resource
 ${url}              https://demo.nopcommerce.com/
 ${email}            test@example.com
 ${password}         Test@123
-${Execution_Env}    False    # Set to 'True' for Docker, 'False' for local execution
+${Execution_Env}    True    # Set to 'True' for Docker, 'False' for local execution
 
 
 *** Test Cases ***
