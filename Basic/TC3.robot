@@ -1,17 +1,17 @@
 *** Settings ***
 Library     SeleniumLibrary
+Resource    /Users/samueldianpermanaputra/Projects/PythonBelajar/robotFramework/Basic/CommonKeywords.resource
 
 
 *** Variables ***
-${browser}      chrome
-${url}          http://testautomationpractice.blogspot.com/
+${browser}          chrome
+${url}              http://testautomationpractice.blogspot.com/
+${Execution_Env}    False
 
 
 *** Test Cases ***
 Handling Dropdowns and Lists
-    Open Browser    ${url}    ${browser}
-    Maximize Browser Window
-    Set Selenium Speed    1 seconds
+    Open Browser Custom    ${url}    ${Execution_Env}
 
     # 1. Selecting from
     # Syntax: select from List by label | locator | label_name

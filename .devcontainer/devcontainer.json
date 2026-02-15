@@ -1,0 +1,19 @@
+{
+    "name": "Robot Framework Dev Env",
+    "build": { "dockerfile": "../Dockerfile" },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "d-koppenhagen.robotcode",
+                "robocorp.robocorp-code",
+                "robocorp.robotframework-lsp",
+                "ms-python.vscode-pylint",
+                "tumit.vscode-rf-formatter",
+                "d-biehl.robotcode",
+                "Codeium.codeium"
+            ]
+        }
+    },
+    "remoteUser": "root"
+}

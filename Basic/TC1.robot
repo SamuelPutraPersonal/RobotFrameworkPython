@@ -2,36 +2,29 @@
 Documentation       A complete login test script for nopCommerce with bot-detection bypass.
 
 Library             SeleniumLibrary
+Resource            ../Basic/CommonKeywords.resource
 
 
 *** Variables ***
-${browser}      chrome
-${url}          https://demo.nopcommerce.com/
-${email}        test@example.com
-${password}     Test@123
+${url}              https://demo.nopcommerce.com/
+${email}            test@example.com
+${password}         Test@123
+${Execution_Env}    False    # Set to 'True' for Docker, 'False' for local execution
 
 
 *** Test Cases ***
 Login Test
     [Documentation]    Starts the browser with stealth options and performs login.
-    Setup Stealth Browser
+    Setup Browser For Test
     Set Selenium Speed    0.5 seconds
     Login To Application
     [Teardown]    Close Browser
 
 
 *** Keywords ***
-Setup Stealth Browser
-    # Create Chrome Options to bypass bot detection
-    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
-
-    # These arguments hide the "automated" nature of the browser
-    Call Method    ${options}    add_argument    --disable-blink-features\=AutomationControlled
-    Call Method    ${options}    add_experimental_option    excludeSwitches    ${{['enable-automation']}}
-    Call Method    ${options}    add_argument    --start-maximized
-
-    Open Browser    ${url}    ${browser}    options=${options}
-    # Optional: Wait a moment for the site to settle
+Setup Browser For Test
+    # Using 'True' as a string to match the IF check in your Resource file
+    Open Browser Custom    ${url}    ${Execution_Env}
     Sleep    2s
 
 Login To Application
@@ -40,9 +33,9 @@ Login To Application
     Click Link    xpath://a[@class='ico-login']
 
     # 2. Enter Credentials
-    Wait Until Element Is Visible    id:Email    timeout=5s
+    Wait Until Element Is Visible    id:Email    timeout=10s
     Input Text    id:Email    ${email}
     Input Password    id:Password    ${password}
 
     # 3. Click the Login button (Fixed the 'loqin' typo here)
-    Click Element    xpath://button[contains(@class,'login-button')]
+    Click Button    xpath://button[contains(@class,'login-button')]

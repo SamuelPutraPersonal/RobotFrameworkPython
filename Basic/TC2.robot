@@ -1,15 +1,17 @@
 *** Settings ***
 Library     SeleniumLibrary
+Resource    /Users/samueldianpermanaputra/Projects/PythonBelajar/robotFramework/Basic/CommonKeywords.resource
 
 
 *** Variables ***
-${browser}      chrome
-${url}          http://testautomationpractice.blogspot.com/
+${browser}          chrome
+${url}              http://testautomationpractice.blogspot.com/
+${Execution_Env}    False
 
 
 *** Test Cases ***
 Testing Radio Buttons and Check Boxes
-    Open Browser    ${url}    ${browser}
+    Open Browser Custom    ${url}    ${Execution_Env}
     Maximize Browser Window
     Set Selenium Speed    1 seconds
 
