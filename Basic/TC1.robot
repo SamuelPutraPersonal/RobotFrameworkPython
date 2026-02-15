@@ -6,10 +6,9 @@ Resource            ../Basic/CommonKeywords.resource
 
 
 *** Variables ***
-${url}              https://demo.nopcommerce.com/
-${email}            test@example.com
-${password}         Test@123
-${Execution_Env}    True    # Set to 'True' for Docker, 'False' for local execution
+${url}          https://demo.nopcommerce.com/
+${email}        test@example.com
+${password}     Test@123    # Set to 'True' for Docker, 'False' for local execution
 
 
 *** Test Cases ***
@@ -24,7 +23,7 @@ Login Test
 *** Keywords ***
 Setup Browser For Test
     # Using 'True' as a string to match the IF check in your Resource file
-    Open Browser Custom    ${url}    ${Execution_Env}
+    Open Browser Custom    ${url}
     Sleep    2s
 
 Login To Application

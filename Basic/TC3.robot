@@ -4,14 +4,13 @@ Resource    /Users/samueldianpermanaputra/Projects/PythonBelajar/robotFramework/
 
 
 *** Variables ***
-${browser}          chrome
-${url}              http://testautomationpractice.blogspot.com/
-${Execution_Env}    False
+${browser}      chrome
+${url}          http://testautomationpractice.blogspot.com/
 
 
 *** Test Cases ***
 Handling Dropdowns and Lists
-    Open Browser Custom    ${url}    ${Execution_Env}
+    Open Browser Custom    ${url}
 
     # 1. Selecting from
     # Syntax: select from List by label | locator | label_name

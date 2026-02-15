@@ -4,14 +4,13 @@ Resource    /Users/samueldianpermanaputra/Projects/PythonBelajar/robotFramework/
 
 
 *** Variables ***
-${browser}          chrome
-${url}              http://testautomationpractice.blogspot.com/
-${Execution_Env}    True
+${browser}      chrome
+${url}          http://testautomationpractice.blogspot.com/
 
 
 *** Test Cases ***
 Testing Radio Buttons and Check Boxes
-    Open Browser Custom    ${url}    ${Execution_Env}
+    Open Browser Custom    ${url}
     Maximize Browser Window
     Set Selenium Speed    1 seconds
 

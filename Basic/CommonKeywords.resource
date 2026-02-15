@@ -6,19 +6,36 @@ Library     SeleniumLibrary
 # These are only used when run_in_docker is True
 ${DOCKER_CHROME_BINARY}         /usr/bin/chromium
 ${DOCKER_CHROME_DRIVER_PATH}    /usr/bin/chromedriver
+# --- CENTRAL CONTROL ---
+# Set to 'False' for local Mac (Headed)
+# Set to 'True' for Docker/GitHub (Headless)
+${RUN_IN_DOCKER_MODE}           False
 
 
 *** Keywords ***
 Open Browser Custom
-    [Arguments]    ${target_url}    ${run_in_docker}=False
+    [Arguments]    ${target_url}    ${run_in_docker}={Run_IN_DOCKER_MODE}
 
     ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
 
     IF    '${run_in_docker}' == 'True'
         # --- DOCKER / PIPELINE SETTINGS ---
-        Call Method    ${options}    add_argument    --headless
+        # Using 'new' headless mode is often better for bypassing detection
+        Call Method    ${options}    add_argument    --headless=new
         Call Method    ${options}    add_argument    --no-sandbox
         Call Method    ${options}    add_argument    --disable-dev-shm-usage
+
+        # --- STEALTH ADDITIONS ---
+        # Hides the "navigator.webdriver" flag that Cloudflare looks for
+        Call Method    ${options}    add_argument    --disable-blink-features\=AutomationControlled
+        # Removes the "Chrome is being controlled by automated software" notification
+        Call Method    ${options}    add_experimental_option    excludeSwitches    ${{['enable-automation']}}
+        # Sets a common User Agent so it doesn't look like a "headless" Linux server
+        Call Method
+        ...    ${options}
+        ...    add_argument
+        ...    user-agent\=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
+
         ${options.binary_location}=    Set Variable    ${DOCKER_CHROME_BINARY}
 
         ${service}=    Evaluate
