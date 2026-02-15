@@ -14,8 +14,8 @@ jobs:
       - name: Run Tests in Docker
         run: |
           mkdir -p results
-          # We force 'True' here because GitHub's servers are headless
-          docker run --rm -v ${{ github.workspace }}/results:/app/results my-robot-app \
+          # Added --shm-size=2gb to prevent browser crashes
+          docker run --rm --shm-size=2gb -v ${{ github.workspace }}/results:/app/results my-robot-app \
           robot --variable RUN_IN_DOCKER_MODE:True -d results Basic/
 
       - name: Upload Test Results

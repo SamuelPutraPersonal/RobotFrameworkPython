@@ -20,17 +20,16 @@ Open Browser Custom
 
     IF    '${run_in_docker}' == 'True'
         # --- DOCKER / PIPELINE SETTINGS ---
-        # Using 'new' headless mode is often better for bypassing detection
         Call Method    ${options}    add_argument    --headless=new
+
+        # ESSENTIAL FOR GITHUB ACTIONS:
         Call Method    ${options}    add_argument    --no-sandbox
         Call Method    ${options}    add_argument    --disable-dev-shm-usage
+        Call Method    ${options}    add_argument    --disable-gpu
 
         # --- STEALTH ADDITIONS ---
-        # Hides the "navigator.webdriver" flag that Cloudflare looks for
         Call Method    ${options}    add_argument    --disable-blink-features\=AutomationControlled
-        # Removes the "Chrome is being controlled by automated software" notification
         Call Method    ${options}    add_experimental_option    excludeSwitches    ${{['enable-automation']}}
-        # Sets a common User Agent so it doesn't look like a "headless" Linux server
         Call Method
         ...    ${options}
         ...    add_argument
