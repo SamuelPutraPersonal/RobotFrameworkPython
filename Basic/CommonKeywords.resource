@@ -14,7 +14,7 @@ ${RUN_IN_DOCKER_MODE}           False
 
 *** Keywords ***
 Open Browser Custom
-    [Arguments]    ${target_url}    ${run_in_docker}={Run_IN_DOCKER_MODE}
+    [Arguments]    ${target_url}    ${run_in_docker}=${RUN_IN_DOCKER_MODE}
 
     ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
 

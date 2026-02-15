@@ -1,5 +1,5 @@
 name: Robot Framework Regression
-on: [push]  # This triggers the pipeline on every code push
+on: [push]
 
 jobs:
   run-robot-tests:
@@ -11,16 +11,22 @@ jobs:
       - name: Build Docker Image
         run: docker build -t my-robot-app .
 
-      - name: Run Tests in Docker
+      - name: Create Results Directory
         run: |
           mkdir -p results
-          # Added --shm-size=2gb to prevent browser crashes
-          docker run --rm --shm-size=2gb -v ${{ github.workspace }}/results:/app/results my-robot-app \
-          robot --variable RUN_IN_DOCKER_MODE:True -d results Basic/
+          chmod 777 results
+
+      - name: Run Tests in Docker
+        run: |
+          docker run --rm \
+            --shm-size=2gb \
+            -v ${{ github.workspace }}/results:/app/results \
+            my-robot-app \
+            robot --variable RUN_IN_DOCKER_MODE:True -d results Basic/
 
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
-        if: always()  # Ensures you get reports even if the test fails
+        if: always()
         with:
           name: robot-test-reports
           path: results/
